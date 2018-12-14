@@ -21,7 +21,6 @@ class App extends BaseComponent {
   }
 
   render() {
-    console.error(123)
     return (
       <Layout>
         <Head />

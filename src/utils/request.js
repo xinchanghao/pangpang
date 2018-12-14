@@ -1,5 +1,5 @@
 import reqwest from 'reqwest';
-import { baseURL } from '../../config';
+import { baseURL } from './config';
 import { Alert } from 'antd';
 import Auth from './auth';
 
@@ -20,6 +20,7 @@ export default (router, criteria = {}, method = 'get',processData=true) => {
         return;
       }
       if(resp.errno === 403) {
+        Alert.error(resp.msg)
         return Auth.logout();
       }
       if(resp.errno === 601){

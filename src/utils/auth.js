@@ -1,6 +1,6 @@
 import request from './request';
 import * as Cookie from 'tiny-cookie';
-import { PANGKey } from '../../config';
+import { PANGKey } from './config';
 
 /** Cookie 过期时间默认为一年 */
 var expiresTime = new Date();
