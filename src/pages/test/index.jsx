@@ -1,8 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import BaseComponent from 'utils/BaseComponent.jsx';
+import testActions from 'actions/test.js';
+import { bindActionCreators } from 'redux';
 
 class Test extends BaseComponent {
+
+  componentWillMount() {
+    this.props.testActions.test({user: "xinchanghao", pwd: "123123"})
+  }
 
   render() {
     return (
@@ -16,5 +22,9 @@ class Test extends BaseComponent {
 export default connect((state) => {
   return {
     // addResult: state.getIn(['HomeReducer'])
+  }
+}, dispatch => {
+  return {
+    testActions: bindActionCreators(testActions, dispatch)
   }
 })(Test)

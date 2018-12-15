@@ -1,4 +1,6 @@
-import * as reducerType from 'Utils/reducerType.js'
+import api from 'utils/api';
+
+
 
 export const add = function (data) {
     return {

@@ -1,7 +1,7 @@
 import reqwest from 'reqwest';
 import { baseURL } from './config';
 import { Alert } from 'antd';
-import Auth from './auth';
+// import Auth from './auth';
 
 export default (router, criteria = {}, method = 'get',processData=true) => {
   return new Promise((resolve, reject) => {
@@ -15,13 +15,13 @@ export default (router, criteria = {}, method = 'get',processData=true) => {
       withCredentials: true
     }).then(resp => {
       if (resp.errno === 1018 || resp.errno === 404) {
-        Auth.clearCookie();
+        // Auth.clearCookie();
         window.location.href = '/';
         return;
       }
       if(resp.errno === 403) {
         Alert.error(resp.msg)
-        return Auth.logout();
+        // return Auth.logout();
       }
       if(resp.errno === 601){
         reject(resp);

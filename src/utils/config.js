@@ -1,14 +1,14 @@
-var env = process.env.ODIN_ENV;
+var env = process.env.NODE_ENV;
 var baseURL = '';
 var PANGKey = '';
 
-var sharePublic= '';
+
 if (env === 'development') {
-  baseURL = '';
-  PANGKey = 'devPANGPANG';
+  baseURL = 'http://dev.pangpang.net:8080';
+  PANGKey = 'devPANGPANGKey';
 } else {
-  baseURL = '';
-  PANGKey = 'PANGPANG';
+  baseURL = 'http://pangpang.net:8080';
+  PANGKey = 'PANGPANGKey';
 }
 
 module.exports = {
