@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom'
-import { AsyncComponent } from 'utils/asyncComponent.jsx'
+import { AsyncComponent } from 'utils/asyncComponent'
 
 class AppRoute extends Component {
   render() {

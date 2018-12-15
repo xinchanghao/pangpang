@@ -22,7 +22,7 @@
 ### `npm start`
 
 在游览器上运行，包含热更新.<br>
-在游览器打开 [http://localhost:3000](http://localhost:3000).
+在游览器打开 [http://localhost:8080](http://localhost:8080).
 
 你可以看到此项目的demo
 
@@ -39,7 +39,7 @@
 下载后, 你的目录大概这样:
 
 ```
-my-app/
+pangpang-app/
   config
     jest  -----单元测试配置
       cssTransform.js
@@ -62,20 +62,18 @@ my-app/
   src/
     actions -----redux 的 action目录
     component  -----react展示组件目录
-    container -----容器组件
+    pages -----容器组件
     reducers  -----reduxcer 集合入口文件
     store -----store的配置
     utils
       asyncComponent.jsx -----chunk配置
       AsyncComponentFn.jsx  -----chunk的配置
       BaseComponent.jsx -----基于immutable的容器
-      reducerType.js ----- action+redux的公用type
-    App.js ------ 路由入口
+    Router.js ------ 路由入口
     App.test.js  ----- 单元测试demo
     index.css  ----- rest.css hackcss
     index.js ------ 入口文件
   package.json ------ 配置文件
-  README.md ------ 你正在阅读的文件。。。
 ```
 
 **关于css模块**:

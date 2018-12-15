@@ -10,7 +10,7 @@ class Head extends React.Component {
   menu = (
     <Menu>
       <Menu.Item key="0">
-        <a href="#">个人中心</a>
+        <a href="/dashboard">个人中心</a>
       </Menu.Item>
       <Menu.Item key="1">
         <a href="#">退出</a>
@@ -36,8 +36,8 @@ class Head extends React.Component {
           </Menu>
           <div className="header__right">
             <Dropdown overlay={this.menu} trigger={['click']}>
-              <a className="ant-dropdown-link" href="#">
-                胖胖<Icon type="down" />
+              <a className="ant-dropdown-link">
+                登录<Icon type="down" />
               </a>
             </Dropdown>
           </div>

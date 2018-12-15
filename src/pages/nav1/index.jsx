@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { AsyncComponent } from 'utils/asyncComponent.jsx';
+import { AsyncComponent } from 'utils/asyncComponent';
 
 export default class Login extends React.Component {
 

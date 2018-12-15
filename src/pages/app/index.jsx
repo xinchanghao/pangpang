@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {  Route, Switch, NavLink } from 'react-router-dom';
 import BaseComponent from 'utils/BaseComponent.jsx';
-import { AsyncComponent } from 'utils/asyncComponent.jsx';
+import { AsyncComponent } from 'utils/asyncComponent';
 import './index.less';
 import { Layout, Breadcrumb } from 'antd';
 import Head from 'components/header';
