@@ -13,11 +13,18 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
+    this.loginOrSignup();
+  }
+
+  loginOrSignup = () => {
+    $("#login").css("display", "none");
     $("#signup").click(function () {
       $(".message").css("transform", "translateX(100%)");
       if ($(".message").hasClass("login")) {
         $(".message").removeClass("login");
       }
+      $("#signup").css("display", "none");
+      $("#login").css("display", "block");
     });
     $("#login").click(function () {
       $(".message").css("transform", "translateX(0)");
@@ -25,9 +32,11 @@ class Dashboard extends React.Component {
         $(".message").removeClass("signup");
       }
       $(".message").addClass("login");
+      $("#login").css("display", "none");
+      $("#signup").css("display", "block");
+
     });
     $(".container").addClass("shake");
-
   }
 
   render() {
@@ -65,5 +74,9 @@ class Dashboard extends React.Component {
 export default connect((state) => {
   return {
     // addResult: state.getIn(['HomeReducer'])
+  }
+}, dispatch => {
+  return {
+    
   }
 })(Dashboard)
