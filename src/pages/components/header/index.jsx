@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Layout, Menu, Dropdown, Icon } from 'antd';
+import Auth from 'utils/auth';
 const { Header } = Layout;
 import './style.less';
 
@@ -35,11 +36,14 @@ class Head extends React.Component {
             <Menu.Item key="3"><Link to="/test" />test</Menu.Item>
           </Menu>
           <div className="header__right">
-            <Dropdown overlay={this.menu} trigger={['click']}>
+            {Auth.isLogin() ? <Dropdown overlay={this.menu} trigger={['click']}>
               <a className="ant-dropdown-link">
-                登录<Icon type="down" />
+                {Auth.getUserContext().name}<Icon type="down" />
               </a>
-            </Dropdown>
+            </Dropdown> :
+              <a className="ant-dropdown-link" href="/login">登录</a>
+            }
+
           </div>
 
         </div>

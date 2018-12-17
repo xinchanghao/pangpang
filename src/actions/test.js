@@ -1,10 +1,12 @@
 import api from 'utils/api';
+import { Alert } from 'antd';
+
 
 const test = (param) => {
   return () => {
     api.test(param).then(() => {
-        Alert.info("修改成功");
-        adminHistory.goBack();
+        console.log("修改成功");
+        // adminHistory.goBack();
     })
   }
 };

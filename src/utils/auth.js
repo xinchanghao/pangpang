@@ -55,7 +55,7 @@ var Auth = {
     return getUserInfoByUid(uid); 
   },
   logout() {
-    return request('/user/login/logout').then(redirectToLogin);
+    return request('/user/login/logout').then(redirectLogin);
   },
 
   getUserContext() {
@@ -73,8 +73,8 @@ var Auth = {
   },
 
   isLogin() {
-    return Cookie.get(AuthKey) && Cookie.get(PANGKey);
+    return Cookie.get(PANGKey) && Cookie.get(AuthKey);
   },
 };
 
-module.exports = Auth;
+export default Auth;

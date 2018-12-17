@@ -7,7 +7,7 @@ class AppRoute extends Component {
     return (
       <div className="pangpang-app-dom">
         <Switch>
-          <Route exact path="/dashboard" component={AsyncComponent('dashboard')} />
+          <Route exact path="/login" component={AsyncComponent('dashboard')} />
           <Route path="/" component={AsyncComponent('app')} />
           <Redirect to="/" />
         </Switch>
