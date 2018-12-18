@@ -11,8 +11,8 @@ export default (router, criteria = {}, method = 'get',processData=true) => {
       data: criteria,
       processData:processData,
       type: 'json',
-      crossOrigin: true,
-      withCredentials: false
+      crossOrigin: true, //是否跨域
+      withCredentials: true, //携带cookie
     }).then(resp => {
       if (resp.errno === 1018 || resp.errno === 404) {
         // Auth.clearCookie();

@@ -7,7 +7,7 @@ import { bindActionCreators } from 'redux';
 class Test extends BaseComponent {
 
   componentWillMount() {
-    this.props.testActions.test({user: "xinchanghao", password: "123123123"})
+    this.props.testActions.test({account: "1", pwd: "1"})
   }
 
   render() {
