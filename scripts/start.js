@@ -40,8 +40,8 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // webpack-dev-server启动的host和passport配置.
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 8080;
-const HOST = process.env.HOST || 'local.pangpang.net';
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 3000;
+const HOST = process.env.HOST || 'localhost';
 
 choosePort(HOST, DEFAULT_PORT)
   .then(port => {
