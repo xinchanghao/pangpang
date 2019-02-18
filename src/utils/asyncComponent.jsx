@@ -1,7 +1,7 @@
 import asyncComponent from './AsyncComponentFn'
 
-export const AsyncComponent = (path)=>{
+export const AsyncComponent = (path) => {
     return (
-        asyncComponent(() => import('../pages/'+path))
+        asyncComponent(() => import('../pages/' + path))
     )
 };

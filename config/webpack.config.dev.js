@@ -18,7 +18,7 @@ const env = getClientEnvironment(publicUrl);
 
 
 module.exports = {
-
+  mode: 'development',
   devtool: 'cheap-module-source-map',
   entry: [
     require.resolve('react-dev-utils/webpackHotDevClient'),
@@ -55,7 +55,7 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.jsx?$/,
         enforce: 'pre',
         include: paths.appSrc,
         use: [
@@ -63,6 +63,7 @@ module.exports = {
             loader: "babel-loader",
             options: {
               plugins: [
+                "dynamic-import-webpack",
                 ['import', { libraryName: 'antd', style: 'css' }],
               ],
               cacheDirectory: true
@@ -250,7 +251,7 @@ module.exports = {
       inject: true,
       template: paths.appHtml
     }),
-    new InterpolateHtmlPlugin(env.raw),
+    new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
     new webpack.NamedModulesPlugin(),
     new webpack.DefinePlugin(env.stringified),
     new webpack.HotModuleReplacementPlugin(),
