@@ -13,7 +13,6 @@ const paths = require('./paths');
 
 const publicPath = '/';
 const publicUrl = '';
-// Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
 
