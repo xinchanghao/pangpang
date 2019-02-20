@@ -55,7 +55,7 @@ module.exports = {
     rules: [
       {
         test: /\.js[x]?$/,
-        enforce: 'pre',
+        enforce: 'pre', //定义loader的执行优先顺序
         include: paths.appSrc,
         use: [
           {
@@ -65,7 +65,7 @@ module.exports = {
                 "dynamic-import-webpack",
                 ['import', { libraryName: 'antd', style: 'css' }],
               ],
-              cacheDirectory: true
+              cacheDirectory: true //缓存loader打包结果加快重新打包的过程
             },
           },
         ]
@@ -80,7 +80,6 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
-          // Process JS with Babel.
           {
             test: /\.(js|jsx)$/,
             include: paths.appSrc,
@@ -106,7 +105,7 @@ module.exports = {
                   ident: 'postcss',
                   plugins: () => [
                     require('postcss-flexbugs-fixes'),
-                    autoprefixer({
+                    autoprefixer({  //兼容浏览器前缀-webkit等
                       browsers: [
                         '>1%',
                         'last 4 versions',
@@ -129,7 +128,7 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
-                  modules: true,
+                  modules: true, //打开css_modules
                   localIdentName: '[name]__[local]-[hash:base64:6]', //定制css_modules生成哈希字符串的格式
                 },
               },
