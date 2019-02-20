@@ -38,7 +38,7 @@ module.exports = {
     modules: ['node_modules', paths.appNodeModules].concat(
       process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
     ),
-    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx', '.css', '.less'],
     alias: {
       actions: path.resolve("src/actions"),
       utils: path.resolve("src/utils"),
@@ -54,7 +54,7 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.js[x]?$/,
         enforce: 'pre',
         include: paths.appSrc,
         use: [
@@ -130,7 +130,7 @@ module.exports = {
                 options: {
                   importLoaders: 1,
                   modules: true,
-                  localIdentName: '[name]__[local]-[hash:base64:6]',
+                  localIdentName: '[name]__[local]-[hash:base64:6]', //定制css_modules生成哈希字符串的格式
                 },
               },
               {
