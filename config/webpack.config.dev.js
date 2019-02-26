@@ -54,7 +54,7 @@ module.exports = {
     strictExportPresence: true,
     rules: [
       {
-        test: /\.js[x]?$/,
+        test: /\.jsx?$/,
         enforce: 'pre', //定义loader的执行优先顺序
         include: paths.appSrc,
         use: [
@@ -71,7 +71,7 @@ module.exports = {
         ]
       },
       {
-        oneOf: [
+        oneOf: [ // 只使用这些嵌套规则之一
           {
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
             loader: require.resolve('url-loader'),
