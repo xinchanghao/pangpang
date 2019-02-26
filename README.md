@@ -9,6 +9,7 @@
   * `chunk懒加载`
   * `devSeverver热更新`
   * `jest单元测试`
+  * `webpack4`
 
 ## 运行方法
 
