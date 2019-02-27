@@ -1,6 +1,4 @@
 'use strict';
-
-const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -8,46 +6,20 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
-const eslintFormatter = require('react-dev-utils/eslintFormatter');
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const BaseConfig = require('./webpack.config.base');
 
 const publicPath = paths.servedPath;
 const publicUrl = publicPath.slice(0, -1);
 const env = getClientEnvironment(publicUrl);
-
-const shouldUseRelativeAssetPaths = publicPath === './';
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 
 if (env.stringified['process.env'].NODE_ENV !== '"production"') {
   throw new Error('Production builds must have NODE_ENV=production.');
 }
 
-const cssFilename = 'static/css/[name].[contenthash:8].css';
-
-const extractTextPluginOptions = shouldUseRelativeAssetPaths ? { publicPath: Array(cssFilename.split('/').length).join('../') } : {};
-
-const postcssLoader = {
-  loader: require.resolve('postcss-loader'),
-  options: {
-    ident: 'postcss',
-    plugins: () => [
-      require('postcss-flexbugs-fixes'),
-      autoprefixer({
-        browsers: [
-          '>1%',
-          'last 4 versions',
-          'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
-        ],
-        flexbox: 'no-2009',
-      }),
-    ],
-    sourceMap: true
-  }
-}
 
 module.exports = {
   mode: 'production',
@@ -61,169 +33,8 @@ module.exports = {
     publicPath: publicPath,
     devtoolModuleFilenameTemplate: info => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, '/'),
   },
-  resolve: {
-    modules: ['node_modules', paths.appNodeModules].concat(
-      process.env.NODE_PATH.split(path.delimiter).filter(Boolean)
-    ),
-    extensions: ['.js', '.jsx', '.json', '.css', '.less', '.web.js', '.web.jsx'],
-    alias: {
-      actions: path.resolve("src/actions"),
-      utils: path.resolve("src/utils"),
-      pages: path.resolve("src/pages"),
-      components: path.resolve("src/pages/components"),
-      'react-native': 'react-native-web',
-    },
-    plugins: [
-      new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
-    ],
-  },
-  module: {
-    strictExportPresence: true,
-    rules: [
-      {
-        test: /\.jsx?$/,
-        enforce: 'pre',
-        use: [
-          {
-            loader: "babel-loader",
-            options: {
-              plugins: [
-                "dynamic-import-webpack",
-                ['import', { libraryName: 'antd', style: 'css' }],
-              ],
-              cacheDirectory: true
-            },
-          },
-        ],
-        include: paths.appSrc,
-      },
-      {
-        oneOf: [
-
-          {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-            loader: require.resolve('url-loader'),
-            options: {
-              limit: 10000,
-              name: 'static/media/[name].[hash:8].[ext]',
-            },
-          },
-          {
-            test: /\.(js|jsx)$/,
-            include: paths.appSrc,
-            loader: require.resolve('babel-loader'),
-            options: {
-              compact: true,
-            },
-          },
-          {
-            test: /\.css$/,
-            include: paths.appNodeModules,
-            use: [
-              MiniCssExtractPlugin.loader,
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                  minimize: true,
-                  sourceMap: shouldUseSourceMap,
-                },
-              },
-              postcssLoader
-            ],
-
-          },
-          {
-            test: /\.css$/,
-            exclude: paths.appNodeModules,
-            use: [
-              MiniCssExtractPlugin.loader,
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                  minimize: true,
-                  sourceMap: shouldUseSourceMap,
-                  modules: true,
-                  localIdentName: '[name]__[local]-[hash:base64:6]',
-                },
-              },
-              postcssLoader
-            ]
-          },
-          {
-            test: /\.scss$/,
-            exclude: paths.appNodeModules,
-            use: [
-              MiniCssExtractPlugin.loader,
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 2,
-                  minimize: true,
-                  sourceMap: shouldUseSourceMap,
-                  modules: true,
-                  localIdentName: '[name]__[local]-[hash:base64:6]',
-                },
-              },
-              {
-                loader: "sass-loader",
-                options: {
-                  sourceMap: true
-                }
-              },
-              postcssLoader
-            ]
-          },
-          {
-            test: /\.less$/,
-            exclude: paths.appNodeModules,
-            use: [
-              {
-                loader: 'style-loader'
-              },
-              {
-                loader: 'css-loader',
-                options: {
-                  importLoaders: 2
-                }
-              },
-              postcssLoader,
-              {
-                loader: 'less-loader'
-              }
-            ]
-          },
-          {
-            loader: require.resolve('file-loader'),
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
-            options: {
-              name: 'static/media/[name].[hash:8].[ext]',
-            },
-          },
-
-        ],
-      },
-    ],
-  },
-  optimization: {
-    namedModules: true,
-    namedChunks: true,
-    minimizer: [
-      new UglifyJSPlugin({
-        uglifyOptions: {
-          compress: {
-            warnings: false,
-            comparisons: false,
-          },
-          output: {
-            comments: false,
-            ascii_only: true,
-          }
-        }
-      })
-    ]
-  },
+  resolve: BaseConfig.resolve,
+  module: BaseConfig.module,
   plugins: [
     new HtmlWebpackPlugin({
       inject: true,
@@ -243,9 +54,6 @@ module.exports = {
     }),
     new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
     new webpack.DefinePlugin(env.stringified),
-    // new ExtractTextPlugin({
-    // filename: 'static/css/[name].[contenthash:8].css',
-    // }),
     new MiniCssExtractPlugin({
       filename: 'static/css/[name].[hash].css',
       chunkFilename: 'static/css/[id].[hash].css'
@@ -272,10 +80,23 @@ module.exports = {
     }),
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
   ],
-  node: {
-    dgram: 'empty',
-    fs: 'empty',
-    net: 'empty',
-    tls: 'empty',
-  },
+  node: BaseConfig.node,
+  optimization: {
+    namedModules: true,
+    namedChunks: true,
+    minimizer: [
+      new UglifyJSPlugin({
+        uglifyOptions: {
+          compress: {
+            warnings: false,
+            comparisons: false,
+          },
+          output: {
+            comments: false,
+            ascii_only: true,
+          }
+        }
+      })
+    ]
+  }
 };

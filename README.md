@@ -11,7 +11,7 @@
   * `chunk懒加载`
   * `devSeverver热更新`
   * `jest单元测试`
-  * `webpack4`
+  * `webpack 4`
 
 ## 运行方法
 
@@ -41,6 +41,7 @@
 
 ```
 pangpang-app/
+  build   -----打包后生成的文件目录
   config
     jest  -----单元测试配置
       cssTransform.js
@@ -50,7 +51,7 @@ pangpang-app/
     polyfills.js -----单元测试配置
     webpack.config.dev.js  -----dev的webpack配置
     webpack.config.prod.js  -----生产的webpack配置
-    webpackDevServer.config.js  -----devServer的webpack配置
+    webpack.config.base.js  -----webpack的公共配置(module,resolve,devServer,node等)
   node_modules/ -----下载的模块(需要手动npm install)
   scripts  -----package.json的script模块加载配置
     build.js
@@ -70,6 +71,9 @@ pangpang-app/
       asyncComponent.jsx -----chunk配置
       AsyncComponentFn.jsx  -----chunk的配置
       BaseComponent.jsx -----基于immutable的容器
+      auth.js ----- 登录鉴权
+      config.js ----- 接口配置
+      request.js ----- 封装的reqwest
     Router.js ------ 路由入口
     App.test.js  ----- 单元测试demo
     index.css  ----- rest.css hackcss
