@@ -1,3 +1,5 @@
+# PangPang胖胖-React前端脚手架
+
 这是关于react的现成的架构。修改了Facebook官方的脚手架：create-react-app。
 本架构集合技术栈：
   * `create-react-app`
@@ -13,7 +15,6 @@
 
 ## 运行方法
 
-
 下载了此仓库, 你需要:
 
 ### `npm install`
@@ -21,9 +22,8 @@
 安装所需要的依赖库
 
 ### `npm start`
-
-在游览器上运行，包含热更新.<br>
-在游览器打开 [http://localhost:8080](http://localhost:8080).
+首次运行自动打开浏览器，跳转至http://localhost:3000
+在浏览器打开 [http://localhost:3000](http://localhost:3000).
 
 你可以看到此项目的demo
 
