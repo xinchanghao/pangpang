@@ -23,9 +23,10 @@
 
 ### `npm start`
 首次运行自动打开浏览器，跳转至http://localhost:3000
+
 在浏览器打开 [http://localhost:3000](http://localhost:3000).
 
-你可以看到此项目的demo
+你可以看到此项目的[demo](https://chhxin.github.io/pangpang-demo/).
 
 ### `npm test`
 
