@@ -51,7 +51,7 @@ pangpang-app/
     webpack.config.dev.js  -----dev的webpack配置
     webpack.config.prod.js  -----生产的webpack配置
     webpackDevServer.config.js  -----devServer的webpack配置
-  node_modules/ -----下载的模块
+  node_modules/ -----下载的模块(需要手动npm install)
   scripts  -----package.json的script模块加载配置
     build.js
     start.js
