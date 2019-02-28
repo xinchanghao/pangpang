@@ -2,7 +2,6 @@
 process.env.BABEL_ENV = 'development';
 process.env.NODE_ENV = 'development';
 process.on('unhandledRejection', err => {
-  // process.exit(1); //中断node进程
   throw err;
 });
 
